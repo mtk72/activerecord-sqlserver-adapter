@@ -3,7 +3,7 @@
 module ActiveRecord
   module ConnectionAdapters
     module SQLServer
-      class SchemaCreation < ConnectionAdapters:SchemaCreation
+      class SchemaCreation < SchemaCreation # :nodoc:
         private
 
         def visit_TableDefinition(o)

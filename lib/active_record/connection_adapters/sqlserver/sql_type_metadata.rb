@@ -3,7 +3,7 @@
 module ActiveRecord
   module ConnectionAdapters
     module SQLServer
-      class SqlTypeMetadata < ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+      class SqlTypeMetadata < SqlTypeMetadata
         def initialize(**kwargs)
           @sqlserver_options = kwargs.extract!(:sqlserver_options)
           super(**kwargs)
