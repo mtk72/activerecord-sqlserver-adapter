@@ -424,9 +424,13 @@ module ActiveRecord
           timeout: config_timeout(config),
           encoding: config_encoding(config),
           azure: config[:azure],
+          sybase_ase: config[:sybase_ase],
           contained: config[:contained]
         ).tap do |client|
-          if config[:azure]
+          if config[:sybase_ase]
+            client.execute("SET ANSINULL ON").do
+            return client
+          elsif config[:azure]
             client.execute("SET ANSI_NULLS ON").do
             client.execute("SET ANSI_NULL_DFLT_ON ON").do
             client.execute("SET ANSI_PADDING ON").do
