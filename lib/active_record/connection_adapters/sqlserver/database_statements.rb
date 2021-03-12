@@ -186,7 +186,6 @@ module ActiveRecord
 
         def use_database(database = nil)
           return if sqlserver_azure?
-          return if sybase_ase?
 
           name = SQLServer::Utils.extract_identifiers(database || @connection_options[:database]).quoted
           do_execute "USE #{name}" unless name.blank?
@@ -194,6 +193,7 @@ module ActiveRecord
 
         def user_options
           return {} if sqlserver_azure?
+          return {} if sybase_ase?
 
           rows = select_rows("DBCC USEROPTIONS WITH NO_INFOMSGS", "SCHEMA")
           rows = rows.first if rows.size == 2 && rows.last.empty?
