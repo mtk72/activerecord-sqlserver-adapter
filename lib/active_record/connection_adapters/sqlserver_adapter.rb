@@ -251,6 +251,10 @@ module ActiveRecord
       def sqlserver_azure?
         !!(sqlserver_version =~ /Azure/i)
       end
+      
+      def sybase_ase?
+        !!(sqlserver_version =~ /Adaptive/i)
+      end
 
       def database_prefix_remote_server?
         return false if database_prefix.blank?
