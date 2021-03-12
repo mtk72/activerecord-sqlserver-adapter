@@ -186,6 +186,7 @@ module ActiveRecord
 
         def use_database(database = nil)
           return if sqlserver_azure?
+          return if sybase_ase?
 
           name = SQLServer::Utils.extract_identifiers(database || @connection_options[:database]).quoted
           do_execute "USE #{name}" unless name.blank?
